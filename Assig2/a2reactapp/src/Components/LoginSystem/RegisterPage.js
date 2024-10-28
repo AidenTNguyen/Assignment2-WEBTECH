@@ -50,6 +50,7 @@ function RegisterPage() {
 
     const handlePasswordChange = (password) => {
         setPassword(password.target.value);
+        checkPasswords(password.target.value, confirmPassword);
     };
 
     const handleConfirmPasswordChange = (passwordConfirm) => {

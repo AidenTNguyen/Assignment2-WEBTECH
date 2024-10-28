@@ -4,7 +4,7 @@ import SHA256 from 'crypto-js/sha256';
 function Dashboard() {
   return (
       <div className="Dashboard">
-        <p>Login Page</p>
+        <p>Dashboard page yo!</p>
     </div>
   );
 }
