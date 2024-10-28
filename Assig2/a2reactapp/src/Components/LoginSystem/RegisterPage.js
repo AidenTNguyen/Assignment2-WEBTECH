@@ -39,7 +39,7 @@ function RegisterPage() {
                     navigate('/LoginPage');
                     alert('Account created!');
                 } else {
-                    setError('That username already exists');
+                    alert('That username already exists');
                 }
             });
     }

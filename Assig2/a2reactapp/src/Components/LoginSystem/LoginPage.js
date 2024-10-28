@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [error, setError] = useState('');
 
     const navigate = useNavigate();
 
@@ -19,6 +20,7 @@ function LoginPage() {
     };
 
     const handleLogin = (event) => {
+        event.preventDefault();
 
         if (username === '' && password === '') {
             alert('Please enter your details');
@@ -34,6 +36,19 @@ function LoginPage() {
             alert("Please enter a username");
             return;
         }
+
+        const hashedPassword = (SHA256(password));
+
+        fetch(`http://localhost:5147/api/Login?userName=${username}&passwordHash=${hashedPassword}`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+                if (data === true) {
+                    navigate('/Dashboard');
+                } else {
+                    setError('Username or Password do not match!');
+                }
+            });
     }
 
     return (
@@ -48,6 +63,8 @@ function LoginPage() {
 
                       <label htmlFor="username">Password</label>
                     <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
+
+                    {error && <p className="error-message">{error}</p>} {/*Only if there is an error*/}
 
                       <hr />
                       <button type="submit">Log In</button>
