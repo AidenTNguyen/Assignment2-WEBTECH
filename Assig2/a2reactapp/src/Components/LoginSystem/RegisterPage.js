@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
 import './LoginPageStyle.css'
@@ -9,9 +9,14 @@ function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
-    useEffect(() => {
-        fetch(`http://localhost:5147/api/Login?userName={username}&passwordhash={password}`)
-    })
+    const handleRegister = (event) => {
+        event.preventDefault();
+
+        if (error !== '' ||  password === '') {
+            alert("Please enter a valid password");
+        }
+        /*fetch(`http://localhost:5147/api/Register?userName=${username}&passwordHash=${password}`)*/
+    }
 
     const handleUsernameChange = (username) => {
         setUsername(username.target.value);
@@ -41,7 +46,7 @@ function RegisterPage() {
       // Reusing the login style so i dont have to create new ones just to replicate the current login page ones
       <div className="LoginPage">
           <div className="login-container">
-              <form>
+                <form onSubmit={handleRegister}>
                   <img src={coatOfArms} alt="SAPOL coat of arms" />
                   <h3>Register</h3>
 
@@ -57,7 +62,7 @@ function RegisterPage() {
                     {error && <p className="error-message">{error}</p>} {/*Only if there is an error*/}
 
                   <hr />
-                  <button>Register</button>
+                    <button type="submit">Register</button>
               </form>
           </div>
       </div>
