@@ -18,6 +18,9 @@ function RegisterPage() {
     };
 
     const checkPasswords = (pass, confirmPass) => {
+        if (pass === '' && confirmPass === '') {
+            setError('');
+        }
         if (pass !== confirmPass) {
             setError('Passwords do not match.');
         } else {
