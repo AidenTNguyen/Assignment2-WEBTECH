@@ -15,8 +15,9 @@ function LoginPage() {
                   <input type="text" placeholder="Username" id="username" />
 
                   <label for="username">Password</label>
-                  <input type="text" placeholder="Password" id="password" />
+                  <input type="password" placeholder="Password" id="password" />
 
+                  <hr />
                   <button>Log In</button>
               </form>
           </div>
