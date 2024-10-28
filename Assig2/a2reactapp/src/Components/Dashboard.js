@@ -2,8 +2,15 @@ import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import './MainStylesheet.css';
 import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+    const navigate = useNavigate();
+
+    const handleButtonClick = () => {
+        navigate('/LocationReport');
+    };
+
   return (
       <div className="dashboard">
         <Navbar />
@@ -14,13 +21,16 @@ function Dashboard() {
 
                   <div className="dropdown-section">
                       <select className="dropdown">
-                          <option value="option1">Option 1</option>
+                          <option value="option1">Dropdown 1</option>
                       </select>
                       <select className="dropdown">
-                          <option value="option1">Option 1</option>
+                          <option value="option1">Dropdown 2</option>
                       </select>
                       <select className="dropdown">
-                          <option value="option1">Option 1</option>
+                          <option value="option1">Dropdown 3</option>
+                      </select>
+                      <select className="dropdown">
+                          <option value="option1">Dropdown/Text Search?</option>
                       </select>
                   </div>
 
@@ -31,9 +41,23 @@ function Dashboard() {
                           ))}
                       </ul>
                   </div>
+
+                  <div class="squares-container"> {/*Placeholder for the D3 graphs*/}
+                      <div class="square left-square">
+                        <p>graph 1</p>
+                      </div>
+                      <div class="square right-square">
+                        <p>graph 2</p>
+                      </div>
+                  </div>
+
+                  <div className="button-container">
+                      <button onClick={handleButtonClick}>Generate Report</button>
+                  </div>
+
               </div>
           </div>
-    </div>
+      </div>
   );
 }
 
