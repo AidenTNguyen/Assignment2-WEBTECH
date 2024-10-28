@@ -22,12 +22,14 @@ body {
 .login-container label {
     display: block;
     width: 100px;
+    font-size: 22px;
+    font-weight: bold;
 }
 
 .login-container input {
     display: block;
     padding: 15px;
-    margin-top: 8px;
+    margin-top: 5px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -45,6 +47,11 @@ body {
     font-size: 16px;
     transition: background-color 0.3s;
     width: 100%;
+}
+
+.login-container p {
+    font-size: 12px;
+    text-align: left;
 }
 
 .login-container button:hover {

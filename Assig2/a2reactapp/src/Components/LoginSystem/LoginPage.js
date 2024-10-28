@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
 import './LoginPageStyle.css'
+import { Link } from 'react-router-dom'
 
 function LoginPage() {
   return (
@@ -19,7 +20,7 @@ function LoginPage() {
 
                   <hr />
                   <button>Log In</button>
-                  <p>Dont have an account? Register now</p>
+                  <p>Dont have an account? Register <Link to="/RegisterPage">here!</Link></p>
               </form>
           </div>
     </div>
