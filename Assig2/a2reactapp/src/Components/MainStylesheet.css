@@ -10,7 +10,7 @@
 
 .navbar {
     display: flex;
-    margin-top: 1%;
+    top: 0;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
@@ -50,4 +50,61 @@
     line-height: 1.4;
     text-align: left;
     color: white;
+}
+
+.dashboard-content {
+    flex: 1; /* This allows the content to grow and take available space */
+    display: flex; /* Use flexbox to center the rectangle */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.rectangle {
+    width: 80%; /* Set the width of the rectangle */
+    height: 50vh; /* Set the height of the rectangle */
+    border-radius: 10px; /* Optional: rounded corners */
+    border: 2px solid black;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.dashboard-title {
+    margin-bottom: 20px; /* Space below the title */
+}
+
+.dropdown-section {
+    display: flex; /* Use flexbox to line up dropdowns */
+    gap: 10px; /* Space between dropdowns */
+    margin-bottom: 20px; /* Space below dropdowns */
+}
+
+.dropdown {
+    padding: 10px; /* Padding inside the dropdown */
+    border-radius: 5px; /* Optional: rounded corners */
+    border: 1px solid #ccc; /* Border styling */
+}
+
+.scrollable-list {
+    width: 100%; /* Full width */
+    max-height: 300px; /* Set a maximum height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border: 1px solid #ccc; /* Optional: border for the list */
+    border-radius: 5px; /* Optional: rounded corners */
+    background-color: #f9f9f9; /* Light background color */
+}
+
+.scrollable-list ul {
+    list-style-type: none; /* Remove bullets */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.scrollable-list li {
+    padding: 10px; /* Padding for list items */
+    border-bottom: 1px solid #ddd; /* Divider between items */
+    text-align: left;
+}
+
+.scrollable-list li:last-child {
+    border-bottom: none; /* Remove border from the last item */
 }
