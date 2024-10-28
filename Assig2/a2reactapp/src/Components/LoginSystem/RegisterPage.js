@@ -8,6 +8,23 @@ function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    const handlePasswordChange = (password) => {
+        setPassword(password.target.value);
+    };
+
+    const handleConfirmPasswordChange = (passwordConfirm) => {
+        setConfirmPassword(passwordConfirm.target.value);
+        checkPasswords(password, passwordConfirm.target.value);
+    };
+
+    const checkPasswords = (pass, confirmPass) => {
+        if (pass !== confirmPass) {
+            setError('Passwords do not match.');
+        } else {
+            setError('');
+        }
+    };
+
     return (
       // Reusing the login style so i dont have to create new ones just to replicate the current login page ones
       <div className="LoginPage">
@@ -19,8 +36,8 @@ function RegisterPage() {
                   <label for="username">Username</label>
                   <input type="text" placeholder="Username" id="username" />
 
-                  <label for="username">Password</label>
-                  <input type="password" placeholder="Password" id="password" />
+                    <label for="username">Password</label>
+                    <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
 
                   <label for="username">Confirm Password</label>
                   <input type="password" placeholder="Confirm Password" id="passwordConfirmation" />
