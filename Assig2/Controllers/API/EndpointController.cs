@@ -30,7 +30,8 @@ namespace Assig2.Controllers.API
     public class EndpointController : Controller
     {
         private readonly ExpiationsContext _context;
-        ImmutableList<string> cameraCodes = ImmutableList.Create("M", "PAC", "I/section", "P2P", "Rail", "Mid Block");
+        ImmutableList<string> cameraCodes = ImmutableList.Create("F", "M", "PAC", "I/section", "P2P", "Rail", "Mid Block");
+        //Missed 'F' camera type. Thanks to Brian.
         static Dictionary<string, string> loginList = new Dictionary<string, string> { {"cool_fred", sha256hash("hunter2") }, { "large_marge", sha256hash("test123") } };
         //hunter2 should map to -> f52fbd32b2b3b86ff88ef6c490628285f482af15ddcb29541f94bcf526a3f6c7
         //test123 should map to -> ecd71870d1963316a97e3ac3408c9835ad8cf0f3c1bc703527c30265534f75ae
@@ -101,8 +102,9 @@ namespace Assig2.Controllers.API
         {
             var cameraContext = _context.CameraCodes;
             Debug.Assert(suburb != null, "Suburb was NULL here.");
-            var suburbs = await cameraContext.Where(i => i.Suburb.ToLower().StartsWith(suburb.ToLower())).Select(i => new { i.LocationId, i.CameraTypeCode, i.CameraTypeCodeNavigation.CameraType1, i.Suburb, i.RoadName, i.RoadType }).ToListAsync();
-
+            var suburbs = await cameraContext.Where(i => i.Suburb.ToLower().StartsWith(suburb.ToLower()) || i.Suburb.ToLower().StartsWith(" " + suburb.ToLower())).Select(i => new { i.LocationId, i.CameraTypeCode, i.CameraTypeCodeNavigation.CameraType1, i.Suburb, i.RoadName, i.RoadType }).ToListAsync();
+            //Tks to Andre for noticing some Suburbs start with " Adelaide". If this version is slower or you don't like it, relpace with previous version ->
+            // var suburbs = await cameraContext.Where(i => i.Suburb.ToLower().StartsWith(suburb.ToLower())).Select(i => new { i.LocationId, i.CameraTypeCode, i.CameraTypeCodeNavigation.CameraType1, i.Suburb, i.RoadName, i.RoadType }).ToListAsync();
             if (cameraIdsOnly)
             {
                 return suburbs.Select(i => new { i.LocationId, i.CameraTypeCode });
