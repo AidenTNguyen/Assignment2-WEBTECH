@@ -12,8 +12,16 @@ function RegisterPage() {
     const handleRegister = (event) => {
         event.preventDefault();
 
-        if (error !== '' ||  password === '') {
+        if (username === '' && password === '') {
+            alert('Please enter your details');
+        }
+
+        else if (error !== '' ||  password === '') {
             alert("Please enter a valid password");
+        }
+
+        else if (username === '') {
+            alert("Please enter a username")
         }
         /*fetch(`http://localhost:5147/api/Register?userName=${username}&passwordHash=${password}`)*/
     }
