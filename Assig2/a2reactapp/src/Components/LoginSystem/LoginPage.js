@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
-import './LoginPage.css'
+import './LoginPageStyle.css'
 
 function LoginPage() {
   return (
@@ -19,6 +19,7 @@ function LoginPage() {
 
                   <hr />
                   <button>Log In</button>
+                  <p>Dont have an account? Register now</p>
               </form>
           </div>
     </div>
