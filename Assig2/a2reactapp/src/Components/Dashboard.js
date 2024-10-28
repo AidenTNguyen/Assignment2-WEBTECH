@@ -1,15 +1,24 @@
-import React, { useState } from 'react';
-import SHA256 from 'crypto-js/sha256';
+import React, { useEffect, useState } from 'react';
 import './MainStylesheet.css';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+    const [cameraSuburbs, setCameraSuburbs] = useState(null);
+
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
         navigate('/LocationReport');
     };
+
+    useEffect(() => {
+        fetch(`http://localhost:5147/api/Get_ListCameraSuburbs`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data)
+            })
+    }, [])
 
   return (
       <div className="dashboard">
@@ -42,11 +51,11 @@ function Dashboard() {
                       </ul>
                   </div>
 
-                  <div class="squares-container"> {/*Placeholder for the D3 graphs*/}
-                      <div class="square left-square">
+                  <div className="squares-container"> {/*Placeholder for the D3 graphs*/}
+                      <div className="square left-square">
                         <p>graph 1</p>
                       </div>
-                      <div class="square right-square">
+                      <div className="square right-square">
                         <p>graph 2</p>
                       </div>
                   </div>

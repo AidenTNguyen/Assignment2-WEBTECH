@@ -42,7 +42,6 @@ function LoginPage() {
         fetch(`http://localhost:5147/api/Login?userName=${username}&passwordHash=${hashedPassword}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data)
                 if (data === true) {
                     navigate('/Dashboard');
                 } else {
