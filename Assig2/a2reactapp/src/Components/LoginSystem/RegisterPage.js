@@ -77,7 +77,7 @@ function RegisterPage() {
                   <h3>Register</h3>
 
                     <label htmlFor="username">Username</label>
-                    <input type="text" placeholder="Username" id="username" alue={username} onChange={handleUsernameChange} />
+                    <input type="text" placeholder="Username" id="username" value={username} onChange={handleUsernameChange} />
 
                     <label htmlFor="username">Password</label>
                     <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
