@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
 import './LoginPageStyle.css'
@@ -9,21 +10,38 @@ function RegisterPage() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
 
+    const navigate = useNavigate();
+
     const handleRegister = (event) => {
         event.preventDefault();
 
         if (username === '' && password === '') {
             alert('Please enter your details');
+            return;
         }
 
         else if (error !== '' ||  password === '') {
             alert("Please enter a valid password");
+            return;
         }
 
         else if (username === '') {
-            alert("Please enter a username")
+            alert("Please enter a username");
+            return;
         }
-        /*fetch(`http://localhost:5147/api/Register?userName=${username}&passwordHash=${password}`)*/
+
+        const hashedPassword = (SHA256(password));
+
+        fetch(`http://localhost:5147/api/Register?userName=${username}&passwordHash=${hashedPassword}`)
+            .then(response => response.json())
+            .then(data => {
+                if (data === true) {
+                    navigate('/LoginPage');
+                    alert('Account created!');
+                } else {
+                    setError('That username already exists');
+                }
+            });
     }
 
     const handleUsernameChange = (username) => {
@@ -58,13 +76,13 @@ function RegisterPage() {
                   <img src={coatOfArms} alt="SAPOL coat of arms" />
                   <h3>Register</h3>
 
-                  <label for="username">Username</label>
+                    <label htmlFor="username">Username</label>
                     <input type="text" placeholder="Username" id="username" alue={username} onChange={handleUsernameChange} />
 
-                    <label for="username">Password</label>
+                    <label htmlFor="username">Password</label>
                     <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
 
-                    <label for="username">Confirm Password</label>
+                    <label htmlFor="username">Confirm Password</label>
                     <input type="password" placeholder="Confirm Password" id="passwordConfirmation" value={confirmPassword} onChange={handleConfirmPasswordChange} />
 
                     {error && <p className="error-message">{error}</p>} {/*Only if there is an error*/}

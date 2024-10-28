@@ -12,10 +12,10 @@ function LoginPage() {
               <img src={coatOfArms} alt="SAPOL coat of arms" />
                   <h3>Login</h3>
 
-                  <label for="username">Username</label>
+                  <label htmlFor="username">Username</label>
                   <input type="text" placeholder="Username" id="username" />
 
-                  <label for="username">Password</label>
+                  <label htmlFor="username">Password</label>
                   <input type="password" placeholder="Password" id="password" />
 
                   <hr />
