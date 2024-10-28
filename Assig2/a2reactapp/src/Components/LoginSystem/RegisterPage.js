@@ -1,12 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
 import './LoginPageStyle.css'
 
 function RegisterPage() {
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
     const [error, setError] = useState('');
+
+    useEffect(() => {
+        fetch(`http://localhost:5147/api/Login?userName={username}&passwordhash={password}`)
+    })
+
+    const handleUsernameChange = (username) => {
+        setUsername(username.target.value);
+    };
 
     const handlePasswordChange = (password) => {
         setPassword(password.target.value);
@@ -37,7 +46,7 @@ function RegisterPage() {
                   <h3>Register</h3>
 
                   <label for="username">Username</label>
-                  <input type="text" placeholder="Username" id="username" />
+                    <input type="text" placeholder="Username" id="username" alue={username} onChange={handleUsernameChange} />
 
                     <label for="username">Password</label>
                     <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
