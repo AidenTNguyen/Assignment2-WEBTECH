@@ -1,10 +1,16 @@
 import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
+import './MainStylesheet.css';
+import Navbar from './Navbar';
 
 function Dashboard() {
   return (
-      <div className="Dashboard">
-        <p>Dashboard page yo!</p>
+      <div className="dashboard">
+        <Navbar />
+          <p>Dashboard page yo!</p>
+
+          <div className="dashboard-content">
+          </div>
     </div>
   );
 }

@@ -1,0 +1,25 @@
+.dashboard {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #15425D;
+    color: white;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar-content {
+    padding-left: 20%;
+}
