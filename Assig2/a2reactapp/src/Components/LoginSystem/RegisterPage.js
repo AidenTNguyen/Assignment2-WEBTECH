@@ -39,8 +39,10 @@ function RegisterPage() {
                     <label for="username">Password</label>
                     <input type="password" placeholder="Password" id="password" value={password} onChange={handlePasswordChange} />
 
-                  <label for="username">Confirm Password</label>
-                  <input type="password" placeholder="Confirm Password" id="passwordConfirmation" />
+                    <label for="username">Confirm Password</label>
+                    <input type="password" placeholder="Confirm Password" id="passwordConfirmation" value={confirmPassword} onChange={handleConfirmPasswordChange} />
+
+                    {error && <p className="error-message">{error}</p>} {/*Only if there is an error*/}
 
                   <hr />
                   <button>Register</button>
