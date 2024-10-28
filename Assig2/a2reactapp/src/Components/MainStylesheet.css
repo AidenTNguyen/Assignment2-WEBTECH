@@ -10,6 +10,7 @@
 
 .navbar {
     display: flex;
+    margin-top: 1%;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
@@ -21,5 +22,32 @@
 }
 
 .navbar-content {
-    padding-left: 20%;
+    display: flex; /* Use flexbox for inner content */
+    align-items: center; /* Center items vertically */
+    padding-left: 20%; /* Adjust left padding as needed */
+    width: 100%; /* Ensure it takes full width */
+}
+.navbar-text {
+    display: flex;
+    flex-direction: column; /* Stack text lines vertically */
+    justify-content: center; /* Center the text vertically */
+}
+
+.navbar-image {
+    width: auto; /* Adjust the size of the image */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 10px; /* Space between image and text */
+}
+
+.navbar-text h4 {
+    margin-bottom: 0;
+    line-height: 1.4;
+    color: white;
+}
+
+.navbar-text h6 {
+    margin-top: 0;
+    line-height: 1.4;
+    text-align: left;
+    color: white;
 }

@@ -7,7 +7,11 @@ function Navbar() {
     return (
         <nav className="navbar">
                 <div className="navbar-content">
-                    <img src={coatOfArms} alt="SAPOL coat of arms" />
+                    <img src={coatOfArms} alt="SAPOL coat of arms" className="navbar-image" />
+                    <div className="navbar-text">
+                        <h4>SOUTH AUSTRALIA POLICE</h4>
+                        <h6>GO HARD OR GO HOME</h6>
+                    </div>
                 </div>
         </nav>
     );

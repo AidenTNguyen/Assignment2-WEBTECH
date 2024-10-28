@@ -7,9 +7,9 @@ function Dashboard() {
   return (
       <div className="dashboard">
         <Navbar />
-          <p>Dashboard page yo!</p>
 
           <div className="dashboard-content">
+
           </div>
     </div>
   );
