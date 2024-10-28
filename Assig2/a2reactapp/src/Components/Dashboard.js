@@ -4,7 +4,7 @@ import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
-    const [cameraSuburbs, setCameraSuburbs] = useState(null);
+    const [cameraSuburbs, setCameraSuburbs] = useState([]);
 
     const navigate = useNavigate();
 
