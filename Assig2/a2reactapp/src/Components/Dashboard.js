@@ -14,7 +14,7 @@ function Dashboard() {
     };
 
     const handleSuburb = (event) => {
-        setSuburb(event);
+        setSuburb(event.target.value);
     }
 
     useEffect(() => {
@@ -22,7 +22,6 @@ function Dashboard() {
             .then(response => response.json())
             .then(data => {
                 setCameraSuburbs(data);
-                console.log(data[0]);
             })
     }, [])
 
