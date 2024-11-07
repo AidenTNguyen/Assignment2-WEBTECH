@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './MainStylesheet.css';
 import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
+import SuburbFilter from './DashboardFilters/SuburbFilter'
 
 function Dashboard() {
     const [cameraSuburbs, setCameraSuburbs] = useState([]);
@@ -34,14 +35,7 @@ function Dashboard() {
                   <h3 className="dashboard-title">Dashboard Title</h3>
 
                   <div className="dropdown-section">
-                      <select className="dropdown" onChange={handleSuburb}>
-                          <option value="">Select a suburb</option>
-                          {cameraSuburbs.map(cameraSuburbs => (
-                              <option key={cameraSuburbs} value={cameraSuburbs}>
-                                  {cameraSuburbs}
-                              </option>
-                          )) }
-                      </select>
+                      <SuburbFilter />
                       <select className="dropdown">
                           <option value="option1">Dropdown 2</option>
                       </select>
