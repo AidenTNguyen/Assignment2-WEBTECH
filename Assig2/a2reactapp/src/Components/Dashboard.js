@@ -56,15 +56,6 @@ function Dashboard() {
                       </ul>
                   </div>
 
-                  <div className="squares-container"> {/*Placeholder for the D3 graphs*/}
-                      <div className="square left-square">
-                        <p>graph 1</p>
-                      </div>
-                      <div className="square right-square">
-                        <p>graph 2</p>
-                      </div>
-                  </div>
-
                   <div className="button-container">
                       <button onClick={handleButtonClick}>Generate Report</button>
                   </div>
