@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
     const [cameraSuburbs, setCameraSuburbs] = useState([]);
+    const [selectedSuburb, setSuburb] = useState();
 
     const navigate = useNavigate();
 
@@ -12,11 +13,16 @@ function Dashboard() {
         navigate('/LocationReport');
     };
 
+    const handleSuburb = (event) => {
+        setSuburb(event);
+    }
+
     useEffect(() => {
         fetch(`http://localhost:5147/api/Get_ListCameraSuburbs`)
             .then(response => response.json())
             .then(data => {
                 setCameraSuburbs(data);
+                console.log(data[0]);
             })
     }, [])
 
@@ -29,7 +35,7 @@ function Dashboard() {
                   <h3 className="dashboard-title">Dashboard Title</h3>
 
                   <div className="dropdown-section">
-                      <select className="dropdown">
+                      <select className="dropdown" onChange={handleSuburb}>
                           <option value="">Select a suburb</option>
                           {cameraSuburbs.map(cameraSuburbs => (
                               <option key={cameraSuburbs} value={cameraSuburbs}>
@@ -61,6 +67,8 @@ function Dashboard() {
                   </div>
 
               </div>
+              {/*Debug*/}
+              <p>Suburb: {selectedSuburb}</p>
           </div>
       </div>
   );
