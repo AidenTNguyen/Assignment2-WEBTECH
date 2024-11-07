@@ -1,14 +1,20 @@
-function SuburbFilter() {
+function SuburbFilter({ suburbChangeFunction, SuburbList }) {
+
+    const handleSuburbSelection = (event) => {
+        suburbChangeFunction(event.target.value);
+    }
 
     return ( 
-        <select className="dropdown" onChange={handleSuburb}>
+        <select className="dropdown" onChange={handleSuburbSelection}>
             <option value="">Select a suburb</option>
-            {cameraSuburbs.map(cameraSuburbs => (
-                <option key={cameraSuburbs} value={cameraSuburbs}>
-                    {cameraSuburbs}
+            {SuburbList.map(Suburb => (
+                <option key={Suburb} value={Suburb}>
+                    {Suburb}
                 </option>
             ))}
         </select>
     );
 
 }
+
+export default SuburbFilter;

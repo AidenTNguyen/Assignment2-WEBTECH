@@ -14,8 +14,8 @@ function Dashboard() {
         navigate('/LocationReport');
     };
 
-    const handleSuburb = (event) => {
-        setSuburb(event.target.value);
+    const handleSuburbFilter = (selectedSuburb) => {
+        setSuburb(selectedSuburb);
     }
 
     useEffect(() => {
@@ -35,7 +35,7 @@ function Dashboard() {
                   <h3 className="dashboard-title">Dashboard Title</h3>
 
                   <div className="dropdown-section">
-                      <SuburbFilter />
+                      <SuburbFilter suburbChangeFunction={handleSuburbFilter} SuburbList={ cameraSuburbs } />
                       <select className="dropdown">
                           <option value="option1">Dropdown 2</option>
                       </select>
