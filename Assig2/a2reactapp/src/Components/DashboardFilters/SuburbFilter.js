@@ -6,8 +6,8 @@ function SuburbFilter({ suburbChangeFunction, suburbList }) {
 
     return ( 
         <select className="dropdown" onChange={handleSuburbSelection}>
-            <option value="">Select a suburb</option>
-            {SuburbList.map(Suburb => (
+            <option value="noSelection">Select a suburb</option>
+            {suburbList.map(Suburb => (
                 <option key={Suburb} value={Suburb}>
                     {Suburb}
                 </option>
