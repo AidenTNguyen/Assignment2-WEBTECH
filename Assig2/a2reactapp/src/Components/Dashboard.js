@@ -37,13 +37,14 @@ function Dashboard() {
             })
     }, [])
 
-    const fetchCameraTypeData = () => {
-        fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb={selectedSuburb}&locationIdsOnly=true`)
-            .then(response => response.json)
+    useEffect (() => {
+        fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb=${selectedSuburb}`)
+            .then(response => response.json())
             .then(data => {
+                console.log(data);
                 setCameraTypeData(data);
             })
-    }
+    }, [selectedSuburb])
 
   return (
       <div className="dashboard">
@@ -65,6 +66,8 @@ function Dashboard() {
                   </div>
                   {/*Debug*/}
                   <p>Suburb: {selectedSuburb}</p>
+                  <p>Camera Type: {selectedCameraType}</p>
+
                   <div className="scrollable-list">
                       <ul>
                           {Array.from({ length: 8 }, (_, index) => (
