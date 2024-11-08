@@ -10,7 +10,7 @@ function Dashboard() {
     const [selectedSuburb, setSuburb] = useState("noSelection");
 
     const [cameraTypes, setCameraTypeData] = useState([]);
-    const [selectedCameraType, setCameraType] = useState(null);
+    const [selectedCameraType, setCameraType] = useState("noSelection");
 
     // Redirecting
     const navigate = useNavigate();
@@ -41,7 +41,6 @@ function Dashboard() {
         fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb=${selectedSuburb}`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 setCameraTypeData(data);
             })
     }, [selectedSuburb])

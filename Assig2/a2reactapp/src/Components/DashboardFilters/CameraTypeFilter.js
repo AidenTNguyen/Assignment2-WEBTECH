@@ -10,7 +10,7 @@ function CameraTypeFilter({ cameraChangeFunction, cameraTypeList }) {
 
     return (
         <div hidden={cameraTypeList.length === 0}>
-            <div className="d-flex">
+            <div className="d-flex" style={ { display: "flex", justifyContent: "center" }}>
                 {distinctCameraTypes.map((camera, index) => (
                     <div className="form-check me-3" key={index}>
                         <input
@@ -18,9 +18,10 @@ function CameraTypeFilter({ cameraChangeFunction, cameraTypeList }) {
                             type="radio"
                             value={camera}
                             name="camera-type"
-                            onChange={ handleCameraSelection }
+                            onChange={handleCameraSelection}
+                            style={{ marginLeft: "12px"} }
                         />
-                        <label className="form-check-label">
+                        <label className="form-check-label" style={{fontSize: "18px", marginLeft: "4px"} }>
                             {camera}
                         </label>
                     </div>
