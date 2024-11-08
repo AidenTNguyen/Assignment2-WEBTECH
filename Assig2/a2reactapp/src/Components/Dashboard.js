@@ -10,7 +10,7 @@ function Dashboard() {
     const [selectedSuburb, setSuburb] = useState("noSelection");
 
     const [cameraTypes, setCameraTypeData] = useState([]);
-    const [selectedCameraType, setCameraType] = useState("noSelection");
+    const [selectedCameraType, setCameraType] = useState(null);
 
     // Redirecting
     const navigate = useNavigate();
@@ -66,7 +66,7 @@ function Dashboard() {
                   </div>
                   {/*Debug*/}
                   <p>Suburb: {selectedSuburb}</p>
-                  <p>Camera Type: {selectedCameraType}</p>
+                  <p>Camera Type: {selectedCameraType.cameraType1}</p>
 
                   <div className="scrollable-list">
                       <ul>

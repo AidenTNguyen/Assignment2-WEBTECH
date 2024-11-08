@@ -1,22 +1,33 @@
 function CameraTypeFilter({ cameraChangeFunction, cameraTypeList }) {
 
-    const filteredCameraTypes = cameraTypeList
-        .map(camera => camera.cameraType1)
+    // This creates a set of unique camera types and then converts back into an array
+    const distinctCameraTypes = [...new Set(cameraTypeList.map(camera => camera.cameraType1))];
 
     const handleCameraSelection = (event) => {
-        cameraChangeFunction(event.target.value);
+        const targetCameraElement = cameraTypeList.find(camera => camera.cameraType1 === event.target.value);
+        cameraChangeFunction(targetCameraElement);
     }
 
     return (
         <div hidden={cameraTypeList.length === 0}>
-            {cameraTypeList.map((camera, index) => (
-                <label key={index}>
-                    <input type="radio" value={camera.cameraType1} name="camera-type" /> {camera.cameraType1}
-                </label>
-            ))}
+            <div className="d-flex">
+                {distinctCameraTypes.map((camera, index) => (
+                    <div className="form-check me-3" key={index}>
+                        <input
+                            className="form-check-input"
+                            type="radio"
+                            value={camera}
+                            name="camera-type"
+                            onChange={ handleCameraSelection }
+                        />
+                        <label className="form-check-label">
+                            {camera}
+                        </label>
+                    </div>
+                ))}
+            </div>
         </div>
     );
-
 }
 
 export default CameraTypeFilter;
