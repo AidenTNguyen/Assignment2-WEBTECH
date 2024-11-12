@@ -15,6 +15,8 @@ function Dashboard() {
     const [selectedCameraType, setCameraType] = useState("noSelection");
 
     // Third filter (DATE RANGE)
+    const [startDate, setStartDate] = useState();
+    const [endDate, setEndDate] = useState();
 
     // Redirecting
     const navigate = useNavigate();
@@ -49,6 +51,10 @@ function Dashboard() {
             })
     }, [selectedSuburb])
 
+    useEffect(() => {
+        setCameraType("noSelection")
+    }, [selectedSuburb])
+
   return (
       <div className="dashboard">
         <Navbar />
@@ -68,8 +74,10 @@ function Dashboard() {
                       </select>
                   </div>
                   {/*Debug*/}
-                  <p>Suburb: {selectedSuburb}</p>
-                  <p>Camera Type: {selectedCameraType.cameraType1}</p>
+                  <text>Suburb: {selectedSuburb}</text>
+                  <text>Camera Type: {selectedCameraType.cameraType1 ? selectedCameraType.cameraType1 : "Not Available"}</text>
+                  <text>Start Date: {startDate ? startDate : "Not Available"}</text>
+                  <text>End Date: {endDate ? endDate : "Not Available"}</text>
 
                   <div className="scrollable-list">
                       <ul>
