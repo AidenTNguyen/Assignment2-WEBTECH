@@ -5,14 +5,25 @@ function SuburbFilter({ suburbChangeFunction, suburbList }) {
     }
 
     return ( 
-        <select className="dropdown" onChange={handleSuburbSelection}>
-            <option value="noSelection">Select a suburb</option>
-            {suburbList.map(Suburb => (
-                <option key={Suburb} value={Suburb}>
-                    {Suburb}
-                </option>
-            ))}
-        </select>
+        <div className="date-range">
+            <label style={{ fontSize: "18px", padding: "10px" }}>
+                Start Date:
+                <input
+                    type="date"
+                    name="startDate"
+                    style={{ marginLeft: "8px" }}
+                />
+            </label>
+
+            <label style={{ fontSize: "18px", padding: "10px" }}>
+                End Date:
+                <input
+                    type="date"
+                    name="endDate"
+                    style={{ marginLeft: "8px"} }
+                />
+            </label>
+        </div>
     );
 
 }

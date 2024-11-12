@@ -4,6 +4,7 @@ import Navbar from './Navbar';
 import { useNavigate } from 'react-router-dom';
 import SuburbFilter from './DashboardFilters/SuburbFilter'
 import CameraTypeFilter from './DashboardFilters/CameraTypeFilter';
+import DateFilter from './DashboardFilters/DateFilter';
 
 function Dashboard() {
     // First filter (SUBURBS)
@@ -30,7 +31,7 @@ function Dashboard() {
     }
 
     const handleCameraFilter = (selectedCameraType) => {
-        setCameraType(selectedCameraType);
+        setCameraType(selectedCameraType)
     }
 
 
@@ -66,16 +67,14 @@ function Dashboard() {
                   <div className="dropdown-section">
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />
                       <CameraTypeFilter cameraChangeFunction={handleCameraFilter} cameraTypeList={cameraTypes} />
-                      <select className="dropdown">
-                          <option value="option1">Dropdown 3</option>
-                      </select>
+                      <DateFilter />
                       <select className="dropdown">
                           <option value="option1">Dropdown/Text Search?</option>
                       </select>
                   </div>
                   {/*Debug*/}
                   <text>Suburb: {selectedSuburb}</text>
-                  <text>Camera Type: {selectedCameraType.cameraType1 ? selectedCameraType.cameraType1 : "Not Available"}</text>
+                  <text>Camera Type: {selectedCameraType.cameraTypeCode ? selectedCameraType.cameraTypeCode : "noSelection"}</text>
                   <text>Start Date: {startDate ? startDate : "Not Available"}</text>
                   <text>End Date: {endDate ? endDate : "Not Available"}</text>
 
