@@ -1,7 +1,11 @@
-function SuburbFilter({ suburbChangeFunction, suburbList }) {
+function SuburbFilter({ startDateChangeFunction, endDateChangeFunction, selectedCameraType }) {
 
-    const handleSuburbSelection = (event) => {
-        suburbChangeFunction(event.target.value);
+    const handleStartDateSelection = (event) => {
+        startDateChangeFunction(event.target.value);
+    }
+
+    const handleEndDateSelection = (event) => {
+        endDateChangeFunction(event.target.value);
     }
 
     return ( 
@@ -12,6 +16,7 @@ function SuburbFilter({ suburbChangeFunction, suburbList }) {
                     type="date"
                     name="startDate"
                     style={{ marginLeft: "8px" }}
+                    onChange={startDateChangeFunction}
                 />
             </label>
 
@@ -20,7 +25,8 @@ function SuburbFilter({ suburbChangeFunction, suburbList }) {
                 <input
                     type="date"
                     name="endDate"
-                    style={{ marginLeft: "8px"} }
+                    style={{ marginLeft: "8px" }}
+                    onChange={endDateChangeFunction}
                 />
             </label>
         </div>
