@@ -6,11 +6,15 @@ import SuburbFilter from './DashboardFilters/SuburbFilter'
 import CameraTypeFilter from './DashboardFilters/CameraTypeFilter';
 
 function Dashboard() {
+    // First filter (SUBURBS)
     const [cameraSuburbs, setCameraSuburbs] = useState([]);
     const [selectedSuburb, setSuburb] = useState("noSelection");
 
+    // Second filter (CAMERA CODE)
     const [cameraTypes, setCameraTypeData] = useState([]);
     const [selectedCameraType, setCameraType] = useState("noSelection");
+
+    // Third filter (DATE RANGE)
 
     // Redirecting
     const navigate = useNavigate();
