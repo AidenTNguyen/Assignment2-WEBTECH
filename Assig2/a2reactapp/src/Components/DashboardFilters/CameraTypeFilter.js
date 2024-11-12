@@ -20,15 +20,19 @@ function CameraTypeFilter({ cameraChangeFunction, cameraTypeList }) {
 
     return (
         <div>
-            <div className="d-flex" style={{ display: "flex", justifyContent: "center" }}>
+            <div className="d-flex flex-wrap" style={{ display: "flex", justifyContent: "center", flexWrap: "wrap" }}>
                 {distinctCameraTypes.map((camera, index) => (
-                    <div className="form-check me-3" key={index}>
+                    <div
+                        className="form-check me-3"
+                        key={index}
+                        style={{ whiteSpace: "nowrap", marginBottom: "10px" }} // Ensures the button and label stay together in the same row
+                    >
                         <input
                             className="form-check-input"
                             type="radio"
                             value={camera}
                             name="camera-type"
-                            checked={selectedCamera === camera}
+                            checked={selectedCamera === camera} // Make sure the selected camera matches
                             onChange={handleCameraSelection}
                             style={{ marginLeft: "12px" }}
                         />

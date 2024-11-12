@@ -46,6 +46,10 @@ function Dashboard() {
         setEndDate(selectedEndDate)
     }
 
+    const handleExpiationDescriptionFilter = (selectedExpiationDescription) => {
+        setExpiationDescription(selectedExpiationDescription)
+    }
+
 
     // Fetches
     useEffect(() => {
@@ -76,7 +80,7 @@ function Dashboard() {
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />
                       <CameraTypeFilter cameraChangeFunction={handleCameraFilter} cameraTypeList={cameraTypes} />
                       <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} />
-                      <ExpiationDescFilter />
+                      <ExpiationDescFilter expiationDescriptionChangeFunction={handleExpiationDescriptionFilter} />
                   </div>
                   {/*Debug*/}
                   <text>Suburb: {selectedSuburb}</text>
