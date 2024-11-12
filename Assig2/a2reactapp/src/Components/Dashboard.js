@@ -50,6 +50,29 @@ function Dashboard() {
         setExpiationDescription(selectedExpiationDescription)
     }
 
+    const handleFinalSearch = async () => {
+        if (selectedSuburb === "noSelection") { // Buncha safety checks although not necessary as the API endpoint has a number of optional parameters...
+            alert("Please select a suburb.")
+        } else if (selectedCameraType === "noSelection") {
+            alert("Please select a camera type")
+        } else if (startDate === "noSelection" || endDate === "noSelection") {
+            alert("Please enter a valid date range")
+        } else if (expiationDescription === "noSelection") {
+            alert("Please select an expiation description")
+        }
+
+        try {
+            let expyResponse = await fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${selectedCameraType.locationId}&cameraTypeCode=${selectedCameraType.cameraTypeCode}&startTime=${startDate}&endTime=${endDate}&offenceCodes=${expiationDescription}`);
+            let expyData = await expyResponse.json();
+
+            console.log('Search Results:', expyData);
+
+            navigate('/LocationReport');
+        } catch (error) {
+            console.error("Error fetching search results:", error);
+        }
+    }
+
 
     // Fetches
     useEffect(() => {
@@ -82,12 +105,10 @@ function Dashboard() {
                       <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} />
                       <ExpiationDescFilter expiationDescriptionChangeFunction={handleExpiationDescriptionFilter} />
                   </div>
-                  {/*Debug*/}
-                  <text>Suburb: {selectedSuburb}</text>
-                  <text>Camera Type: {selectedCameraType.cameraTypeCode ? selectedCameraType.cameraTypeCode : "noSelection"}</text>
-                  <text>Start Date: {startDate}</text>
-                  <text>End Date: {endDate}</text>
-                  <text>Expy Description: {expiationDescription}</text>
+
+                  <div id="searchButton" className="button-container btn-btn-danger" style={{ justifyContent: "center" }} onClick={handleFinalSearch}>
+                      <button>Search</button>
+                  </div>
 
                   <div className="scrollable-list">
                       <ul>
