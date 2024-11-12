@@ -66,7 +66,7 @@ function Dashboard() {
 
           <div className="dashboard-content">
               <div className="rectangle">
-                  <h3 className="dashboard-title">Dashboard Title</h3>
+                  <h3 className="dashboard-title">Suitable MPDC Locations</h3>
 
                   <div className="dropdown-section">
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />

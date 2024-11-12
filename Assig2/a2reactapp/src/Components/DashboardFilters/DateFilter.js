@@ -15,7 +15,9 @@ function SuburbFilter({ startDateChangeFunction, endDateChangeFunction}) {
                 alert('Start date cannot be greater than the end date');
                 setStartDate(''); // Reset the start date input
             } else {
-                startDateChangeFunction(selectedStartDate);
+                let dateObject = new Date(selectedStartDate)
+                let startUnixTimestamp = Math.floor(dateObject.getTime() / 1000)
+                startDateChangeFunction(startUnixTimestamp);
             }
         }
     }
@@ -31,7 +33,9 @@ function SuburbFilter({ startDateChangeFunction, endDateChangeFunction}) {
                 alert('End date cannot be before the start date');
                 setEndDate(''); // Reset the end date input
             } else {
-                endDateChangeFunction(selectedEndDate);
+                let dateObject = new Date(selectedEndDate)
+                let endUnixTimestamp = Math.floor(dateObject.getTime() / 1000)
+                endDateChangeFunction(endUnixTimestamp);
             }
         }
     }
