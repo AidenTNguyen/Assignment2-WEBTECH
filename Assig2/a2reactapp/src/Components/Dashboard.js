@@ -60,10 +60,6 @@ function Dashboard() {
             })
     }, [selectedSuburb])
 
-    useEffect(() => {
-        setCameraType("noSelection")
-    }, [selectedSuburb])
-
   return (
       <div className="dashboard">
         <Navbar />
