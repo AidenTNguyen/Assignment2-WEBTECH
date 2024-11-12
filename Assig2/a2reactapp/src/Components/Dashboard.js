@@ -71,7 +71,7 @@ function Dashboard() {
                   <div className="dropdown-section">
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />
                       <CameraTypeFilter cameraChangeFunction={handleCameraFilter} cameraTypeList={cameraTypes} />
-                      <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} selectedCameraType={selectedCameraType} />
+                      <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} />
                       <select className="dropdown">
                           <option value="option1">Dropdown/Text Search?</option>
                       </select>
