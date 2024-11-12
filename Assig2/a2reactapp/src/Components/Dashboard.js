@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SuburbFilter from './DashboardFilters/SuburbFilter'
 import CameraTypeFilter from './DashboardFilters/CameraTypeFilter';
 import DateFilter from './DashboardFilters/DateFilter';
+import ExpiationDescFilter from './DashboardFilters/ExpiationDescFilter';
 
 function Dashboard() {
     // First filter (SUBURBS)
@@ -18,6 +19,9 @@ function Dashboard() {
     // Third filter (DATE RANGE)
     const [startDate, setStartDate] = useState("noSelection");
     const [endDate, setEndDate] = useState("noSelection");
+
+    // Fourth filter (EXPIATION DESCRIPTION)
+    const [expiationDescription, setExpiationDescription] = useState("noSelection")
 
     // Redirecting
     const navigate = useNavigate();
@@ -72,15 +76,14 @@ function Dashboard() {
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />
                       <CameraTypeFilter cameraChangeFunction={handleCameraFilter} cameraTypeList={cameraTypes} />
                       <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} />
-                      <select className="dropdown">
-                          <option value="option1">Dropdown/Text Search?</option>
-                      </select>
+                      <ExpiationDescFilter />
                   </div>
                   {/*Debug*/}
                   <text>Suburb: {selectedSuburb}</text>
                   <text>Camera Type: {selectedCameraType.cameraTypeCode ? selectedCameraType.cameraTypeCode : "noSelection"}</text>
                   <text>Start Date: {startDate}</text>
                   <text>End Date: {endDate}</text>
+                  <text>Expy Description: {expiationDescription}</text>
 
                   <div className="scrollable-list">
                       <ul>

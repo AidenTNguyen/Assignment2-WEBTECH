@@ -80,7 +80,6 @@
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
 }
 
 .dashboard-title {
@@ -90,13 +89,13 @@
 .dropdown-section {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
+    gap: 10px;
     margin-bottom: 20px;
     align-items: flex-start;
     justify-content: flex-start;
     border: 2px solid grey;
     margin: 10px;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
 }
 

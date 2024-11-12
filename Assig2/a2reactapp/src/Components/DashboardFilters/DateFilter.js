@@ -41,32 +41,34 @@ function SuburbFilter({ startDateChangeFunction, endDateChangeFunction}) {
     }
 
     return (
-        <div className="date-range">
-            <label style={{ fontSize: "18px", padding: "10px" }}>
-                Start Date:
+        <div className="date-range" style={{ display: "flex", alignItems: "center", gap: "10px" }}>
+            <div style={{ fontSize: "18px", padding: "10px", display: "flex", flexDirection: "column", marginLeft: "15%" }}>
+                <label>Start Date:</label>
                 <input
                     type="date"
                     name="startDate"
-                    style={{ marginLeft: "8px" }}
+                    style={{ marginTop: "8px" }}
                     onChange={handleStartDateSelection}
                     value={startDate}
                     min="2023-12-31"
                     max="2024-04-30"
                 />
-            </label>
+            </div>
 
-            <label style={{ fontSize: "18px", padding: "10px" }}>
-                End Date:
+            <span style={{ fontSize: "18px" }}>-</span>
+
+            <div style={{ fontSize: "18px", padding: "10px", display: "flex", flexDirection: "column" }}>
+                <label>End Date:</label>
                 <input
                     type="date"
                     name="endDate"
-                    style={{ marginLeft: "8px" }}
+                    style={{ marginTop: "8px" }}
                     onChange={handleEndDateSelection}
                     value={endDate}
                     min="2023-12-31"
                     max="2024-04-30"
                 />
-            </label>
+            </div>
         </div>
     );
 }

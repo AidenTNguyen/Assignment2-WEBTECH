@@ -5,14 +5,15 @@ function ExpiationDescFilter({ suburbChangeFunction, suburbList }) {
     }
 
     return ( 
-        <select className="dropdown" onChange={handleSuburbSelection}>
-            <option value="noSelection">Select a suburb</option>
-            {suburbList.map(Suburb => (
-                <option key={Suburb} value={Suburb}>
-                    {Suburb}
-                </option>
-            ))}
-        </select>
+        <div className="autocomplete">
+            <input
+                type="text"
+                placeholder="Expiation Description..."
+                value=""
+                onChange=""
+                style={{ padding: "10px", borderRadius: "5px", border: "1px solid #ccc", width: "100%" }}
+            />
+        </div>
     );
 
 }
