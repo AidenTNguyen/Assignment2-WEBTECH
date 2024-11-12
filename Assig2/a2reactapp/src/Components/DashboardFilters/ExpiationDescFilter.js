@@ -1,7 +1,24 @@
+import React, { useEffect, useState } from 'react';
 function ExpiationDescFilter({ expiationDescriptionChangeFunction }) {
 
+    const [input, setInput] = useState('');
+    const [suggestions, setSuggestions] = useState([]);
+    const [filteredSuggestions, setFilteredSuggestions] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:5147/api/Get_SearchOffencesByDescription?offenceCodesOnly=false`)
+            .then(response => response.json())
+            .then(data => {
+                setSuggestions(data)
+                console.log(data)
+            })
+    }, [])
+
     const handleExpiationDescriptionSelection = (event) => {
-        expiationDescriptionChangeFunction(event.target.value);
+        let value = event.target.value;
+        setInput(value);
+        expiationDescriptionChangeFunction(value);
+
     }
 
     return ( 
