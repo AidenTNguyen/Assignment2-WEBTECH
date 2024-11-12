@@ -16,8 +16,8 @@ function Dashboard() {
     const [selectedCameraType, setCameraType] = useState("noSelection");
 
     // Third filter (DATE RANGE)
-    const [startDate, setStartDate] = useState();
-    const [endDate, setEndDate] = useState();
+    const [startDate, setStartDate] = useState("noSelection");
+    const [endDate, setEndDate] = useState("noSelection");
 
     // Redirecting
     const navigate = useNavigate();
@@ -32,6 +32,14 @@ function Dashboard() {
 
     const handleCameraFilter = (selectedCameraType) => {
         setCameraType(selectedCameraType)
+    }
+
+    const handleStartDateFilter = (selectedStartDate) => {
+        setStartDate(selectedStartDate)
+    }
+
+    const handleEndDateFilter = (selectedEndDate) => {
+        setEndDate(selectedEndDate)
     }
 
 
@@ -67,7 +75,7 @@ function Dashboard() {
                   <div className="dropdown-section">
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />
                       <CameraTypeFilter cameraChangeFunction={handleCameraFilter} cameraTypeList={cameraTypes} />
-                      <DateFilter />
+                      <DateFilter startDateChangeFunction={handleStartDateFilter} endDateChangeFunction={handleEndDateFilter} selectedCameraType={selectedCameraType} />
                       <select className="dropdown">
                           <option value="option1">Dropdown/Text Search?</option>
                       </select>
@@ -75,8 +83,8 @@ function Dashboard() {
                   {/*Debug*/}
                   <text>Suburb: {selectedSuburb}</text>
                   <text>Camera Type: {selectedCameraType.cameraTypeCode ? selectedCameraType.cameraTypeCode : "noSelection"}</text>
-                  <text>Start Date: {startDate ? startDate : "Not Available"}</text>
-                  <text>End Date: {endDate ? endDate : "Not Available"}</text>
+                  <text>Start Date: {startDate}</text>
+                  <text>End Date: {endDate}</text>
 
                   <div className="scrollable-list">
                       <ul>

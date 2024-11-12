@@ -16,7 +16,7 @@ function SuburbFilter({ startDateChangeFunction, endDateChangeFunction, selected
                     type="date"
                     name="startDate"
                     style={{ marginLeft: "8px" }}
-                    onChange={startDateChangeFunction}
+                    onChange={handleStartDateSelection}
                 />
             </label>
 
@@ -26,7 +26,7 @@ function SuburbFilter({ startDateChangeFunction, endDateChangeFunction, selected
                     type="date"
                     name="endDate"
                     style={{ marginLeft: "8px" }}
-                    onChange={endDateChangeFunction}
+                    onChange={handleEndDateSelection}
                 />
             </label>
         </div>
