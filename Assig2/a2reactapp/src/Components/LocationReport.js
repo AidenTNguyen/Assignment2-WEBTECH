@@ -35,13 +35,13 @@ function LocationReport() {
         let expiations = Object.values(expiationDaysOfWeek); // Retrieve corresponding values
 
         const svg = d3.select(svgRefMagill.current)
-            .attr("width", 600)
-            .attr("height", 400);
+            .attr("width", 800)
+            .attr("height", 600);
 
         // Margins
-        const margin = { top: 20, right: 30, bottom: 40, left: 40 }
-        const width = 600 - margin.left - margin.right;
-        const height = 400 - margin.top - margin.bottom;
+        const margin = { top: 20, right: 30, bottom: 50, left: 60 }
+        const width = 800 - margin.left - margin.right;
+        const height = 600 - margin.top - margin.bottom;
 
         // Create a group where were gonna chuck all the crap into, hoorah!
         const g = svg.append("g")
@@ -63,7 +63,7 @@ function LocationReport() {
             .domain([Math.max(0, d3.min(expiations)), d3.max(expiations)])  // Low to high expiation count
             .range(["blue", "red"]);
 
-        // bar graph
+        // Bar graph
         g.selectAll(".bar")
             .data(expiations)
             .enter()
@@ -75,17 +75,37 @@ function LocationReport() {
             .attr("height", d => height - yAxis(d)) // Bar height
             .attr("fill", d => colorScale(d));
 
-        // X axis labels
-        g.append("g")
+        // X axis
+        const xAxisGroup = g.append("g")
             .attr("class", "x-axis")
             .attr("transform", `translate(0,${height})`)
             .call(d3.axisBottom(xAxis));
 
-        // Y axis labels
-        g.append("g")
+        // Y axis
+        const yAxisGroup = g.append("g")
             .attr("class", "y-axis")
             .call(d3.axisLeft(yAxis));
-    }, [greenhillRoadData]) // This is unecessary but it WOULD make sense
+
+        // X axis label
+        svg.append("text")
+            .attr("class", "x-axis-label")
+            .attr("x", width / 2 + margin.left)
+            .attr("y", height + margin.top + 40)
+            .attr("text-anchor", "middle")
+            .style("font-size", "18px")
+            .text("Days of the Week");
+
+        // Y axis label
+        svg.append("text")
+            .attr("class", "y-axis-label")
+            .attr("transform", "rotate(-90)") 
+            .attr("x", -height / 2 - margin.top) 
+            .attr("y", margin.left - 40) 
+            .attr("text-anchor", "middle")
+            .style("font-size", "18px")
+            .text("Number of Expiations");
+
+    }, [greenhillRoadData]); // This is unecessary but it WOULD make sense
 
     const navigate = useNavigate();
 
