@@ -77,7 +77,7 @@ function LocationReport() {
             .attr("fill", d => colorScale(d));
 
         bars.transition()
-            .duration(3000) // Stagger this a tad so you have time to get here
+            .duration(5000) // Stagger this a tad so you have time to get here
             .attr("y", d => yAxis(d))
             .attr("height", d => height - yAxis(d));
 
@@ -163,7 +163,7 @@ function LocationReport() {
             .attr("fill", d => colorScale(d));
 
         bars.transition()
-            .duration(5000) // Stagger this a tad so you have time to get here
+            .duration(8000) // Stagger this a tad so you have time to get here
             .attr("y", d => yAxis(d))
             .attr("height", d => height - yAxis(d));
 
@@ -223,11 +223,20 @@ function LocationReport() {
 
                     {/*SVG*/}
                     <div className="svg-container">
-                    <h4>Expiations per day at Greenhill Road</h4>
+                        <h4>Speeding infractions per day at Greenhill Road</h4>
                         <svg ref={svgRefGreenhill}></svg>
                     </div>
 
+                    <p>The data demonstrates that speeding is most common during beginning and ends of the week particularly in the case of the former. This data has been collected over a span of approximately 4 months from December of 2023 to March of 2024. A potential cause for such high rates of road rules violations is that being the subsequent days after the weekend civilians may have sufficiently adapted to the required work week routine. Due to this an argument can be made that an improperly prepared person may underestiamte the time they require to prepare themselves and commute to work. This thereby could cause drivers to become more reckless and hasty as they attempt to arrive to work more quickly to make up for the "relaxed" mindset that may have been leftover from the weekend.</p>
+
                     <br />
+                    <p>A relatively similar point can be made on the days leading towards the weekend as workers may be eagerly seeking out relaxation. They could very well associate their home with the relaxation that is usually accompanied by the weekend and understanding that it draws closer choose to more readily embrace relaxation by rushing home. The data supports this as Wednesday in particular shows the lowest rates of speeding infractions amongst all the days of the week near the CBD which can be said to be rooted in settling into the work week routine. </p>
+
+                    <br />
+                    <p>In summary, this location in between two intersections if installed with an MPDC would prove invaluable to SAPOL reckless drivers are more likely to be caught during spats of reckless driving especially on such a long stretch of road and days close to the weekend.</p>
+
+                    <br />
+                    <hr />
 
                     <h3>Norwood, Magill Road</h3>
                     <img src="https://www.mapquestapi.com/staticmap/v5/map?key=Es5yMrQayzVhmBoTsECtkSUg1DBbtyou&center=-34.9148889,138.639139&zoom=17&size=600,400&locations=-34.9148889,138.639139" alt="Map with Marker" />
@@ -236,10 +245,17 @@ function LocationReport() {
 
                     {/*SVG*/}
                     <div className="svg-container">
-                        <h4>Expiations per day at Magill Road</h4>
+                        <h4>Speeding infractions per day at Magill Road</h4>
                         <svg ref={svgRefMagill}></svg>
                     </div>
 
+                    <p>The data demonstrates a noticeable outlier in Tuesdays where the numer of speeding infractions sees a dramatic increase compared to the other days of the week. This data has been collected over a span of approximately 4 months from December of 2023 to March of 2024. There is a strong possibility that Tuesday in particular has a high level of peak traffic during the day which may be caused from commuters being more active on this day due to the industry or business in the area or returning to work after the weekend trying to catch up after the start of the week.</p>
+
+                    <br />
+                    <p>Since Magill Road is a fairly major route towards Portrush Road, a busy road in itself creating a busy intersection it is likely many commuters take this stretch of road due its quick travel route. Tuesdays could see a combination of people attempting to hurry to work or experiencing delays from the previous day (monday), leading drivers to attempt to make up for lost time hurrily. This combined with the lack of curvature and it being a major arterial road could highly encourage drivers to exceed speed limits for lack of artifical danger from purposeful obstacles like speed bumps or curves in the road.</p>
+
+                    <br />
+                    <p>In summary, this location near an intersection between two major roads (Magill and Portrush Road) would prove an excellent location for the installation of a MPDC due to particular driver behaviours on Tuesday and the high traffic this area experiences.</p>
 
                     <div className="button-container">
                         <button onClick={handleButtonClick}>Return to the Dashboard</button>
