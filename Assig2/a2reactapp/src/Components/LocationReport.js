@@ -35,15 +35,57 @@ function LocationReport() {
         let expiations = Object.values(expiationDaysOfWeek); // Retrieve corresponding values
 
         const svg = d3.select(svgRefMagill.current)
-            .attr("width", 500)
-            .attr("height", 300);
+            .attr("width", 600)
+            .attr("height", 400);
 
         // Margins
         const margin = { top: 20, right: 30, bottom: 40, left: 40 }
-        const width = 500 - margin.left - margin.right;
-        const height = 300 - margin.top - margin.bottom;
+        const width = 600 - margin.left - margin.right;
+        const height = 400 - margin.top - margin.bottom;
 
-    })
+        // Create a group where were gonna chuck all the crap into, hoorah!
+        const g = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        // Scales
+        const xAxis = d3.scaleBand()
+            .domain(days)
+            .range([0, width])
+            .padding(0.1);
+
+        const yAxis = d3.scaleLinear()
+            .domain([0, d3.max(expiations)])
+            .nice()
+            .range([height, 0]);
+
+        // Make the graph prettier
+        const colorScale = d3.scaleLinear()
+            .domain([Math.max(0, d3.min(expiations)), d3.max(expiations)])  // Low to high expiation count
+            .range(["blue", "red"]);
+
+        // bar graph
+        g.selectAll(".bar")
+            .data(expiations)
+            .enter()
+            .append("rect")
+            .attr("class", "bar")
+            .attr("x", (d, i) => xAxis(days[i])) // Position of xAxis based on the days
+            .attr("y", d => yAxis(d)) // Position of yAxis based on the expiation count
+            .attr("width", xAxis.bandwidth()) // Bar width
+            .attr("height", d => height - yAxis(d)) // Bar height
+            .attr("fill", d => colorScale(d));
+
+        // X axis labels
+        g.append("g")
+            .attr("class", "x-axis")
+            .attr("transform", `translate(0,${height})`)
+            .call(d3.axisBottom(xAxis));
+
+        // Y axis labels
+        g.append("g")
+            .attr("class", "y-axis")
+            .call(d3.axisLeft(yAxis));
+    }, [greenhillRoadData]) // This is unecessary but it WOULD make sense
 
     const navigate = useNavigate();
 
