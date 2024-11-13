@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import Navbar from './Navbar';
 import './MainStylesheet.css';
@@ -9,6 +9,8 @@ function LocationReport() {
 
     const [greenhillRoadData, setGreenhillRoadData] = useState([]);
     const [magillRoadData, setMagillRoadData] = useState([]);
+
+    const svgRefMagill = useRef(null); // Reference to the Svg container
 
     useEffect(() => {
         fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=51&cameraTypeCode=I%2Fsection&startTime=0&endTime=2147483647`)
@@ -23,6 +25,25 @@ function LocationReport() {
                 setMagillRoadData(data);
             })
     }, [])
+
+    // UseEffect for rendering the first graph for Greenhill Road
+    useEffect(() => {
+        if (!greenhillRoadData.expiationDaysOfWeek) return;
+
+        let expiationDaysOfWeek = greenhillRoadData.expiationDaysOfWeek;
+        let days = Object.keys(expiationDaysOfWeek); // Retrieve keys
+        let expiations = Object.values(expiationDaysOfWeek); // Retrieve corresponding values
+
+        const svg = d3.select(svgRefMagill.current)
+            .attr("width", 500)
+            .attr("height", 300);
+
+        // Margins
+        const margin = { top: 20, right: 30, bottom: 40, left: 40 }
+        const width = 500 - margin.left - margin.right;
+        const height = 300 - margin.top - margin.bottom;
+
+    })
 
     const navigate = useNavigate();
 
@@ -48,16 +69,7 @@ function LocationReport() {
 
                     {/*SVG*/}
                     <div className="svg-container">
-                        <svg
-                            width="100"
-                            height="100"
-                            viewBox="0 0 100 100"
-                            xmlns="http://www.w3.org/2000/svg"
-                            onMouseEnter={() => 'orange'}
-                            onMouseLeave={() => 'yellow'}
-                        >
-                            <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill={'yellow'} />
-                        </svg>
+                        <svg ref={svgRefMagill}></svg>
                     </div>
 
                     <br />
