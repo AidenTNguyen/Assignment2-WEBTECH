@@ -26,6 +26,12 @@ function Navbar() {
         }
     };
 
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+        alert("You have logged out, Bye Adios Amigo!")
+    }
+
     return (
         <nav className="navbar">
                 <div className="navbar-content">
@@ -41,7 +47,7 @@ function Navbar() {
                 <button onClick={reportRedirect} className="navbar-button">Report</button>
             </div>
 
-            <button className="logout">Logout</button>
+            <button onClick={handleLogout} className="logout">Logout</button>
 
         </nav>
     );
