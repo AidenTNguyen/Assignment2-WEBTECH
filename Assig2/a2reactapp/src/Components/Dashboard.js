@@ -21,7 +21,9 @@ function Dashboard() {
     const [endDate, setEndDate] = useState("noSelection");
 
     // Fourth filter (EXPIATION DESCRIPTION)
-    const [expiationDescription, setExpiationDescription] = useState([""])
+    const [expiationDescription, setExpiationDescription] = useState([""]);
+
+    const [finalResults, setFinalResults] = useState([]);
 
     // Redirecting
     const navigate = useNavigate();
@@ -51,14 +53,19 @@ function Dashboard() {
     }
 
     const handleFinalSearch = async () => {
-        if (selectedSuburb === "noSelection") { // Buncha safety checks although not necessary as the API endpoint has a number of optional parameters...
-            alert("Please select a suburb.")
+        // Safety checks before starting the search
+        if (selectedSuburb === "noSelection") {
+            alert("Please select a suburb.");
+            return;
         } else if (selectedCameraType === "noSelection") {
-            alert("Please select a camera type")
+            alert("Please select a camera type");
+            return;
         } else if (startDate === "noSelection" || endDate === "noSelection") {
-            alert("Please enter a valid date range")
+            alert("Please enter a valid date range");
+            return;
         } else if (expiationDescription.length <= 0) {
-            alert("Please select an expiation description")
+            alert("Please select an expiation description");
+            return;
         }
 
         const locationId = selectedCameraType.locationId;
@@ -68,10 +75,28 @@ function Dashboard() {
         const endTime = endDate;
 
         try {
+            // Fetch the expiations data
             let expyResponse = await fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}&startTime=${startTime}&endTime=${endTime}&offenceCodes=${offenceCodes}`);
             let expyData = await expyResponse.json();
 
-            console.log('Search Results:', expyData);
+            // Fetch the camera data
+            let cameraResponse = await fetch(`http://localhost:5147/api/Get_ListCamerasInSuburb?suburb=${selectedSuburb}`);
+            let cameraData = await cameraResponse.json();
+
+            // Combine expiation data with camera data
+            let combinedData = expyData.map(exp => {
+                let matchingCamera = cameraData.find(camera => camera.locationId === exp.cameraLocationId && camera.cameraTypeCode === exp.cameraTypeCode);
+                if (matchingCamera) {
+                    return { ...exp, cameraInfo: matchingCamera };
+                }
+                return exp;
+            });
+
+            // Log the combined data before setting state to ensure it's correct
+            console.log("Combined Data:", combinedData);
+
+            // Set the final results to state
+            setFinalResults(combinedData);
 
         } catch (error) {
             console.error("Error fetching search results:", error);
