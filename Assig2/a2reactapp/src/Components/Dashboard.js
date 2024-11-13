@@ -98,9 +98,6 @@ function Dashboard() {
                 return exp;
             });
 
-            // Log the combined data before setting state to ensure it's correct
-            console.log("Combined Data:", combinedData);
-
             // Set the final results to state
             setFinalResults(combinedData);
 
@@ -145,7 +142,7 @@ function Dashboard() {
 
           <div className="dashboard-content">
               <div className="rectangle">
-                  <h3 className="dashboard-title">Suitable MPDC Locations</h3>
+                  <h3 className="dashboard-title">Locations of Incident</h3>
 
                   <div className="dropdown-section">
                       <SuburbFilter suburbChangeFunction={handleSuburbFilter} suburbList={cameraSuburbs} />

@@ -17,38 +17,24 @@ function LocationReport() {
             <div className="report-contents">
                 <div className="scrollable-box">
 
-                    <h2>Report Content</h2>
+                    <h2>Locations Report</h2>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
-                        incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                        exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                        dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-                        Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                        mollit anim id est laborum.
+                        Below are the 2 locations you selected and a brief summary on why the installation of MPDCs in these locations will prove beneficial.
                     </p>
 
-                    <p>
-                        Content line 1<br />
-                        Content line 2<br />
-                        Content line 3<br />
-                        Content line 4<br />
-                        Content line 5<br />
-                        Content line 6<br />
-                        Content line 7<br />
-                        Content line 8<br />
-                        Content line 9<br />
-                        Content line 10<br />
-                        Content line 11<br />
-                        Content line 12<br />
-                        Content line 13<br />
-                        Content line 14<br />
-                        Content line 15<br />
-                        Content line 16<br />
-                        Content line 17<br />
-                        Content line 18<br />
-                        Content line 19<br />
-                        Content line 20<br />
-                    </p>
+                    <h4>Adelaide, Greenhill Road</h4>
+                    <img src="https://www.mapquestapi.com/staticmap/v5/map?key=Es5yMrQayzVhmBoTsECtkSUg1DBbtyou&center=-34.9408333,138.6107222&zoom=16&size=600,400&locations=-34.9408333,138.6107222" alt="Map with Marker" />
+
+                    <p>This location is situated near an intersection very near to Adelaide's CBD. What makes this a prime placement for a new MPDC is due to the high rates of drivers exceeding speed limits near this intersection as seen below.</p>
+
+                    <br />
+
+                    <h4>Norwood, Magill Road</h4>
+                    <img src="https://www.mapquestapi.com/staticmap/v5/map?key=Es5yMrQayzVhmBoTsECtkSUg1DBbtyou&center=-34.9148889,138.639139&zoom=17&size=600,400&locations=-34.9148889,138.639139" alt="Map with Marker" />
+
+                    <p>This location near the intersection where Magill Road intersects with Portrush Road is a high traffic area with decently high speeds to match. This is another locations where a number of drivers choose to exceed the speed limit by margins seen below.</p>
+
+
                     <div className="button-container">
                         <button onClick={handleButtonClick}>Return to the Dashboard</button>
                     </div>

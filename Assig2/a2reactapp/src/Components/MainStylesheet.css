@@ -18,6 +18,8 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 .scrollable-box {
@@ -213,5 +215,6 @@ table {
     height: calc(100vh - 60px);
     padding: 20px;
     overflow: hidden;
-    margin-top: 60px;
+    margin-top: 4%;
+    width: 80%;
 }
