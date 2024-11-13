@@ -1,15 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import Navbar from './Navbar';
 import './MainStylesheet.css';
 import { useNavigate } from 'react-router-dom';
 
 function LocationReport() {
+
+    const [greenhillRoadData, setGreenhillRoadData] = useState([]);
+    const [magillRoadData, setMagillRoadData] = useState([]);
+
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
         navigate('/Dashboard');
     };
+
+    useEffect(() => {
+
+    })
 
     return (
         <div className="location-report">
@@ -26,6 +34,20 @@ function LocationReport() {
                     <img src="https://www.mapquestapi.com/staticmap/v5/map?key=Es5yMrQayzVhmBoTsECtkSUg1DBbtyou&center=-34.9408333,138.6107222&zoom=16&size=600,400&locations=-34.9408333,138.6107222" alt="Map with Marker" />
 
                     <p>This location is situated near an intersection very near to Adelaide's CBD. What makes this a prime placement for a new MPDC is due to the high rates of drivers exceeding speed limits near this intersection as seen below.</p>
+
+                    {/*SVG*/}
+                    <div className="svg-container">
+                        <svg
+                            width="100"
+                            height="100"
+                            viewBox="0 0 100 100"
+                            xmlns="http://www.w3.org/2000/svg"
+                            onMouseEnter={() => 'orange'}
+                            onMouseLeave={() => 'yellow'}
+                        >
+                            <circle cx="50" cy="50" r="40" stroke="black" strokeWidth="3" fill={'yellow'} />
+                        </svg>
+                    </div>
 
                     <br />
 
