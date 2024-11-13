@@ -141,11 +141,37 @@ function Dashboard() {
                   </div>
 
                   <div className="scrollable-list">
-                      <ul>
-                          {Array.from({ length: 8 }, (_, index) => (
-                              <li key={index}>List Item {index + 1}</li>
-                          ))}
-                      </ul>
+                      <table>
+                          <thead>
+                              <tr>
+                                  <th>Location (Suburb, Road Name, Road Type)</th>
+                                  <th>Total Fee Amount</th>
+                                  <th>Driver State</th>
+                                  <th>Incident Start Date</th>
+                              </tr>
+                          </thead>
+                          <tbody>
+                              {finalResults.length > 0 ? (
+                                  finalResults.map((result, index) => (
+                                      <tr key={index}>
+                                          <td>
+                                              {/* Combine suburb, road name, and road type */}
+                                              {result.cameraInfo?.suburb && result.cameraInfo?.roadName && result.cameraInfo?.roadType
+                                                  ? `${result.cameraInfo.suburb}, ${result.cameraInfo.roadName}, ${result.cameraInfo.roadType}`
+                                                  : "N/A"}
+                                          </td>
+                                          <td>{result.totalFeeAmt !== null ? `$${result.totalFeeAmt}` : "N/A"}</td>
+                                          <td>{result.driverState || "N/A"}</td>
+                                          <td>{result.incidentStartDate || "N/A"}</td>
+                                      </tr>
+                                  ))
+                              ) : (
+                                  <tr className="no-results">
+                                      <td colSpan="4">No results found.</td>
+                                  </tr>
+                              )}
+                          </tbody>
+                      </table>
                   </div>
 
                   <div className="button-container">
