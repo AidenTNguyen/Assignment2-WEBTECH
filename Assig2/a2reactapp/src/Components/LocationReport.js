@@ -3,21 +3,32 @@ import SHA256 from 'crypto-js/sha256';
 import Navbar from './Navbar';
 import './MainStylesheet.css';
 import { useNavigate } from 'react-router-dom';
+import * as d3 from 'd3';
 
 function LocationReport() {
 
     const [greenhillRoadData, setGreenhillRoadData] = useState([]);
     const [magillRoadData, setMagillRoadData] = useState([]);
 
+    useEffect(() => {
+        fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=51&cameraTypeCode=I%2Fsection&startTime=0&endTime=2147483647`)
+            .then(response => response.json())
+            .then(data => {
+                setGreenhillRoadData(data);
+            })
+
+        fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=140&cameraTypeCode=I%2Fsection&startTime=0&endTime=2147483647`)
+            .then(response => response.json())
+            .then(data => {
+                setMagillRoadData(data);
+            })
+    }, [])
+
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
         navigate('/Dashboard');
     };
-
-    useEffect(() => {
-
-    })
 
     return (
         <div className="location-report">
