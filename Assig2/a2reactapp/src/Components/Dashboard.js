@@ -7,6 +7,8 @@ import CameraTypeFilter from './DashboardFilters/CameraTypeFilter';
 import DateFilter from './DashboardFilters/DateFilter';
 import ExpiationDescFilter from './DashboardFilters/ExpiationDescFilter';
 
+// For the easiest testing just select "Adelaide" -> Intersection or Mobile -> end of 2023 to march-ish 2024 i set the min and max so its hard to miss -> very top option for offence code A001
+
 function Dashboard() {
     // First filter (SUBURBS)
     const [cameraSuburbs, setCameraSuburbs] = useState([]);
@@ -24,6 +26,10 @@ function Dashboard() {
     const [expiationDescription, setExpiationDescription] = useState([""]);
 
     const [finalResults, setFinalResults] = useState([]);
+
+    // Handle location selection
+    const [selectedCount, setSelectedCount] = useState(0); // Track the number of selected checkboxes
+    const [selectedLocations, setselectedLocations] = useState(new Set()); // Store the selected checkboxes
 
     // Redirecting
     const navigate = useNavigate();
@@ -103,6 +109,18 @@ function Dashboard() {
         }
     }
 
+    const handleCheckboxChange = (index) => {
+        const newselectedLocations = new Set(selectedLocations);
+        if (newselectedLocations.has(index)) {
+            newselectedLocations.delete(index); // Deselect
+            setSelectedCount(selectedCount - 1);
+        } else if (selectedCount < 2) {
+            newselectedLocations.add(index); // Select
+            setSelectedCount(selectedCount + 1);
+        }
+        setselectedLocations(newselectedLocations);
+    };
+
 
     // Fetches
     useEffect(() => {
@@ -148,6 +166,7 @@ function Dashboard() {
                                   <th>Total Fee Amount</th>
                                   <th>Driver State</th>
                                   <th>Incident Start Date</th>
+                                  <th>Select</th> {/* New column for checkboxes */}
                               </tr>
                           </thead>
                           <tbody>
@@ -155,7 +174,6 @@ function Dashboard() {
                                   finalResults.map((result, index) => (
                                       <tr key={index}>
                                           <td>
-                                              {/* Combine suburb, road name, and road type */}
                                               {result.cameraInfo?.suburb && result.cameraInfo?.roadName && result.cameraInfo?.roadType
                                                   ? `${result.cameraInfo.suburb}, ${result.cameraInfo.roadName}, ${result.cameraInfo.roadType}`
                                                   : "N/A"}
@@ -163,11 +181,19 @@ function Dashboard() {
                                           <td>{result.totalFeeAmt !== null ? `$${result.totalFeeAmt}` : "N/A"}</td>
                                           <td>{result.driverState || "N/A"}</td>
                                           <td>{result.incidentStartDate || "N/A"}</td>
+                                          <td>
+                                              <input
+                                                  type="checkbox"
+                                                  checked={selectedLocations.has(index)}
+                                                  onChange={() => handleCheckboxChange(index)}
+                                                  disabled={selectedCount >= 2 && !selectedLocations.has(index)} // Disable if 2 are already selected
+                                              />
+                                          </td>
                                       </tr>
                                   ))
                               ) : (
                                   <tr className="no-results">
-                                      <td colSpan="4">No results found.</td>
+                                      <td colSpan="5">No results found.</td>
                                   </tr>
                               )}
                           </tbody>
@@ -175,7 +201,16 @@ function Dashboard() {
                   </div>
 
                   <div className="button-container">
-                      <button onClick={handleButtonClick}>Generate Report</button>
+                      <button
+                          onClick={handleButtonClick}
+                          disabled={selectedCount < 2} // Disable the button if less than 2 checkboxes are selected
+                          style={{
+                              backgroundColor: selectedCount < 2 ? '#d3d3d3' : '', // Grey out the button when not enough checkboxes are selected
+                              cursor: selectedCount < 2 ? 'not-allowed' : 'pointer', // Honestly, this was absolutely NOT worth the effort put into it
+                          }}
+                      >
+                          Generate Report
+                      </button>
                   </div>
 
               </div>
