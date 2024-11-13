@@ -21,7 +21,7 @@ function Dashboard() {
     const [endDate, setEndDate] = useState("noSelection");
 
     // Fourth filter (EXPIATION DESCRIPTION)
-    const [expiationDescription, setExpiationDescription] = useState("noSelection")
+    const [expiationDescription, setExpiationDescription] = useState([""])
 
     // Redirecting
     const navigate = useNavigate();
@@ -57,17 +57,22 @@ function Dashboard() {
             alert("Please select a camera type")
         } else if (startDate === "noSelection" || endDate === "noSelection") {
             alert("Please enter a valid date range")
-        } else if (expiationDescription === "noSelection") {
+        } else if (expiationDescription.length <= 0) {
             alert("Please select an expiation description")
         }
 
+        const locationId = selectedCameraType.locationId;
+        const cameraTypeCode = selectedCameraType.cameraTypeCode;
+        const offenceCodes = expiationDescription;
+        const startTime = startDate;
+        const endTime = endDate;
+
         try {
-            let expyResponse = await fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${selectedCameraType.locationId}&cameraTypeCode=${selectedCameraType.cameraTypeCode}&startTime=${startDate}&endTime=${endDate}&offenceCodes=${expiationDescription}`);
+            let expyResponse = await fetch(`http://localhost:5147/api/Get_ExpiationsForLocationId?locationId=${locationId}&cameraTypeCode=${cameraTypeCode}&startTime=${startTime}&endTime=${endTime}&offenceCodes=${offenceCodes}`);
             let expyData = await expyResponse.json();
 
             console.log('Search Results:', expyData);
 
-            navigate('/LocationReport');
         } catch (error) {
             console.error("Error fetching search results:", error);
         }

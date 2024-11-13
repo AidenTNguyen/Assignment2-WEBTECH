@@ -30,7 +30,7 @@ function ExpiationDescFilter({ expiationDescriptionChangeFunction }) {
         const selectedOffence = suggestions.find(offence => offence.description === selectedDescription);
         if (selectedOffence) {
             setSelectedOffenceCode(selectedOffence.offenceCode);
-            expiationDescriptionChangeFunction(selectedOffence.offenceCode);
+            expiationDescriptionChangeFunction(selectedOffence.offenceCode);  // Pass the offence code
         }
     };
 
