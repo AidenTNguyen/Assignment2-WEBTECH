@@ -2,8 +2,20 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './MainStylesheet.css';
 import coatOfArms from './coatOfArms.png';
+import { useNavigate } from 'react-router-dom';
 
 function Navbar() {
+
+    const navigate = useNavigate();
+
+    const dashboardRedirect = () => {
+        navigate('/Dashboard');
+    };
+
+    const reportRedirect = () => {
+        navigate('/LocationReport');
+    };
+
     return (
         <nav className="navbar">
                 <div className="navbar-content">
@@ -12,7 +24,13 @@ function Navbar() {
                         <h4>SOUTH AUSTRALIA POLICE</h4>
                         <h6>GO HARD OR GO HOME</h6>
                     </div>
-                </div>
+            </div>
+
+            <div className="navbar-buttons">
+                <button onClick={dashboardRedirect} className="navbar-button">Dashboard</button>
+                <button onClick={reportRedirect} className="navbar-button">Report</button>
+            </div>
+
         </nav>
     );
 }

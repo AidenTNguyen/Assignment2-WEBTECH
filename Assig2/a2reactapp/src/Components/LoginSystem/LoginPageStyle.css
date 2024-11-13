@@ -4,7 +4,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #15425D;
+    background-color: white;
     font-family: Arial, sans-serif;
 }
 
@@ -14,8 +14,9 @@ body {
     width: 300px;
     padding: 20px;
     background-color: white;
+    border: 5px solid #15425D;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px #15425D;
     margin-top: 50%;
 }
 

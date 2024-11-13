@@ -34,6 +34,7 @@
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
+/* Navbar */
 .navbar {
     display: flex;
     top: 0;
@@ -47,6 +48,7 @@
     z-index: 1000;
 }
 
+/* Navbar content (existing) */
 .navbar-content {
     display: flex;
     align-items: center;
@@ -78,6 +80,34 @@
     text-align: left;
     color: white;
 }
+
+/* Container for the right-aligned buttons */
+.navbar-buttons {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 25%;
+}
+
+/* Style for the buttons */
+.navbar-button {
+    background-color: white; /* Button color */
+    color: #15425D;
+    text-decoration: none;
+    padding: 10px 20px;
+    margin-left: -10px; /* Space between the buttons */
+    border: 2px solid #15425D;
+    min-width: 180px;
+    min-height: 60px;
+    font-size: 18px;
+}
+
+    .navbar-button:hover {
+        background-color: grey; /* Darken color on hover */
+        transition: background-color 0.3s;
+    }
 
 .dashboard-content {
     flex: 1;

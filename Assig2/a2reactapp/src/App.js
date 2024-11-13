@@ -4,14 +4,15 @@ import React, { useState } from 'react';
 import SHA256 from 'crypto-js/sha256';
 import LoginPage from './Components/LoginSystem/LoginPage';
 import { Outlet } from 'react-router-dom';
+import Navbar from './Components/Navbar';
 
 function App() {
   return (
       <div className="App">
           <div className="App-header">
+              <Navbar />
               <Outlet />
 
-              <footer>SAPOL @2024</footer>
           </div>
 
       </div>
