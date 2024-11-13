@@ -41,6 +41,8 @@ function Navbar() {
                 <button onClick={reportRedirect} className="navbar-button">Report</button>
             </div>
 
+            <button className="logout">Logout</button>
+
         </nav>
     );
 }

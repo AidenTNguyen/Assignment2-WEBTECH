@@ -68,6 +68,25 @@
     margin-right: 10px;
 }
 
+.logout {
+    background-color: white;
+    color: #15425D;
+    border: 2px solid #15425D;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10%;
+    top: 50%; 
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+}
+
 .navbar-text h4 {
     margin-bottom: 0;
     line-height: 1.4;
