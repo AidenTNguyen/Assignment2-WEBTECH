@@ -5,13 +5,17 @@ import SHA256 from 'crypto-js/sha256';
 import LoginPage from './Components/LoginSystem/LoginPage';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Components/Navbar';
+import { AuthenticationProvider } from './Components/AuthenticationProvider';
 
 function App() {
   return (
       <div className="App">
           <div className="App-header">
-              <Navbar />
-              <Outlet />
+
+              <AuthenticationProvider>
+                  <Navbar />
+                  <Outlet />
+              </AuthenticationProvider>
 
           </div>
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import SHA256 from 'crypto-js/sha256';
+import { useAuth } from './AuthenticationProvider';
 import Navbar from './Navbar';
 import './MainStylesheet.css';
 import { useNavigate } from 'react-router-dom';
@@ -7,11 +7,20 @@ import * as d3 from 'd3';
 
 function LocationReport() {
 
+    // Login authentication
+    const { isLoggedIn, login, logout } = useAuth();
+
     const [greenhillRoadData, setGreenhillRoadData] = useState([]);
     const [magillRoadData, setMagillRoadData] = useState([]);
 
     const svgRefGreenhill = useRef(null); // Reference to the Svg container
     const svgRefMagill = useRef(null);
+
+    useEffect(() => {
+        if (isLoggedIn === false) {
+            navigate('/');
+        }
+    }, [])
 
     useEffect(() => {
         fetch(`http://localhost:5147/api/Get_ExpiationStatsForLocationId?locationId=51&cameraTypeCode=I%2Fsection&startTime=0&endTime=2147483647`)

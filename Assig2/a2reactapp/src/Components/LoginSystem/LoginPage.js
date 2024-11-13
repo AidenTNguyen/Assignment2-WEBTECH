@@ -3,11 +3,14 @@ import SHA256 from 'crypto-js/sha256';
 import coatOfArms from '../coatOfArms.png';
 import './LoginPageStyle.css'
 import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../AuthenticationProvider';
 
 function LoginPage() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
+
+    const { isLoggedIn, login, logout } = useAuth();
 
     const navigate = useNavigate();
 
@@ -43,6 +46,7 @@ function LoginPage() {
             .then(response => response.json())
             .then(data => {
                 if (data === true) {
+                    login();
                     navigate('/Dashboard');
                 } else {
                     setError('Username or Password do not match!');

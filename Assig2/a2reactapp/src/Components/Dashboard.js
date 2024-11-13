@@ -6,10 +6,15 @@ import SuburbFilter from './DashboardFilters/SuburbFilter'
 import CameraTypeFilter from './DashboardFilters/CameraTypeFilter';
 import DateFilter from './DashboardFilters/DateFilter';
 import ExpiationDescFilter from './DashboardFilters/ExpiationDescFilter';
+import { useAuth } from './AuthenticationProvider';
 
 // For the easiest testing just select "Adelaide" -> Intersection or Mobile -> end of 2023 to march-ish 2024 i set the min and max so its hard to miss -> very top option for offence code A001
 
 function Dashboard() {
+
+    // Login authentication
+    const { isLoggedIn, login, logout } = useAuth();
+
     // First filter (SUBURBS)
     const [cameraSuburbs, setCameraSuburbs] = useState([]);
     const [selectedSuburb, setSuburb] = useState("noSelection");
@@ -135,6 +140,12 @@ function Dashboard() {
                 setCameraTypeData(data);
             })
     }, [selectedSuburb])
+
+    useEffect(() => {
+        if ( isLoggedIn === false) {
+            navigate('/');
+        }
+    }, [])
 
   return (
       <div className="dashboard">

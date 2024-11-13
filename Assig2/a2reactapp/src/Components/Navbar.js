@@ -3,17 +3,27 @@ import { Link } from 'react-router-dom';
 import './MainStylesheet.css';
 import coatOfArms from './coatOfArms.png';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from './AuthenticationProvider';
 
 function Navbar() {
+    const { isLoggedIn, login, logout } = useAuth();
 
     const navigate = useNavigate();
 
     const dashboardRedirect = () => {
-        navigate('/Dashboard');
+        if (isLoggedIn === false) {
+            alert("You are not logged in.")
+        } else {
+            navigate('/Dashboard');
+        }
     };
 
     const reportRedirect = () => {
-        navigate('/LocationReport');
+        if (isLoggedIn === false) {
+            alert("You are not logged in.")
+        } else {
+            navigate('/LocationReport');
+        }
     };
 
     return (

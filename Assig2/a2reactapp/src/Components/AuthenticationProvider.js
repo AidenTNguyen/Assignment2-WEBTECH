@@ -1,12 +1,12 @@
 import React, { createContext, useState, useContext } from 'react';
 
-const AuthContext = createContext();
+const AuthenticationContext = createContext();
 
 export const useAuth = () => {
-    return useContext(AuthContext);
+    return useContext(AuthenticationContext);
 };
 
-export const AuthProvider = ({ children }) => {
+export const AuthenticationProvider = ({ children }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     const login = () => {
@@ -18,10 +18,10 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ isLoggedIn, login, logout }}>
+        <AuthenticationContext.Provider value={{ isLoggedIn, login, logout }}>
             {children}
-        </AuthContext.Provider>
+        </AuthenticationContext.Provider>
     );
 };
 
-export default AuthContext;
+export default AuthenticationContext;
